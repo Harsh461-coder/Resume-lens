@@ -4,33 +4,211 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign In — ResumeLens</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: "DM Sans", sans-serif;
-      background: linear-gradient(140deg, #eee8ff 0%, #f6f3ff 45%, white 80%);
-      color: #201a38;
-      text-align: center;
-    }
-    .box { max-width: 380px; padding: 40px; }
-    h1 { font-family: "Manrope", sans-serif; font-size: 26px; margin-bottom: 10px; }
-    p { color: #746d88; font-size: 14px; line-height: 1.6; }
-    a { color: #6e44e8; font-weight: 700; text-decoration: none; }
-  </style>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="box">
-    <h1>Sign in — coming soon</h1>
-    <p>
-      This BCA prototype doesn't need an account yet — you can analyze a resume
-      right away from the <a href="index.html">home page</a>. Accounts and saved
-      history are part of the future scope.
-    </p>
+
+  <div class="auth-page">
+
+    <!-- ================= LEFT PANEL ================= -->
+    <section class="auth-left">
+      <div class="logo auth-logo">
+        <div class="logo-icon-wrapper">
+          <img src="images/logo.png" alt="ResumeLens" class="logo-img">
+        </div>
+        <div class="logo-text">
+          <h2>Resume<span>Lens</span></h2>
+          <small>AI ATS RESUME ANALYZER</small>
+        </div>
+      </div>
+
+      <div class="auth-copy">
+        <p class="auth-eyebrow">Welcome back!</p>
+        <h1 class="auth-heading">Sign in to continue<br>analyzing <em>smarter.</em></h1>
+        <p class="auth-subtext">
+          Access your dashboard, analyze resumes, track scores, and
+          improve your chances of getting hired.
+        </p>
+      </div>
+
+      <!-- Dashboard preview card -->
+      <div class="preview-wrap">
+      <div class="preview-card">
+        <div class="mini-sidebar">
+          <div class="mini-item active"><i class="fas fa-table-cells"></i></div>
+          <div class="mini-item"><i class="fas fa-user"></i></div>
+          <div class="mini-item"><i class="fas fa-file-lines"></i></div>
+          <div class="mini-item"><i class="fas fa-chart-simple"></i></div>
+          <div class="mini-item"><i class="fas fa-chart-pie"></i></div>
+          <div class="mini-item"><i class="fas fa-gear"></i></div>
+        </div>
+
+        <div class="preview-content">
+          <small class="preview-title">DASHBOARD OVERVIEW</small>
+
+          <div class="preview-grid">
+            <div class="preview-box score-box">
+              <small>ATS SCORE</small>
+              <div class="score-ring">
+                <span>92<em>%</em></span>
+              </div>
+              <p class="score-label">Excellent Match</p>
+            </div>
+
+            <div class="preview-box">
+              <small>MATCHING SKILLS</small>
+              <ul class="skill-rows">
+                <li><i class="fas fa-check"></i> JavaScript <span class="bar"><i style="width:92%"></i></span></li>
+                <li><i class="fas fa-check"></i> React.js <span class="bar"><i style="width:88%"></i></span></li>
+                <li><i class="fas fa-check"></i> Node.js <span class="bar"><i style="width:85%"></i></span></li>
+                <li><i class="fas fa-check"></i> Python <span class="bar"><i style="width:75%"></i></span></li>
+                <li><i class="fas fa-check"></i> SQL <span class="bar"><i style="width:80%"></i></span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="preview-grid">
+            <div class="preview-box">
+              <small>MISSING SKILLS</small>
+              <ul class="missing-rows">
+                <li><i class="fas fa-circle"></i> TypeScript</li>
+                <li><i class="fas fa-circle"></i> AWS</li>
+                <li><i class="fas fa-circle"></i> Docker</li>
+              </ul>
+            </div>
+
+            <div class="preview-box">
+              <small>RECENT ANALYSES</small>
+              <ul class="recent-rows">
+                <li>
+                  <div><b>Frontend Developer</b><span>2 hours ago</span></div>
+                  <em class="score-good">92%</em>
+                </li>
+                <li>
+                  <div><b>Full Stack Developer</b><span>1 day ago</span></div>
+                  <em class="score-mid">78%</em>
+                </li>
+                <li>
+                  <div><b>Backend Developer</b><span>3 days ago</span></div>
+                  <em class="score-low">65%</em>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="callout-card">
+        <div class="callout-icon"><i class="fas fa-arrow-trend-up"></i></div>
+        <div>
+          <b>Improve. Match. Get Hired.</b>
+          <p>Your dream job is closer than you think.</p>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- ================= RIGHT PANEL ================= -->
+    <section class="auth-right">
+      <form class="auth-form" id="signinForm">
+        <h1>Sign in to your account</h1>
+        <p class="auth-form-sub">Enter your credentials to access your account</p>
+
+        <label class="field-label" for="email">Email address</label>
+        <div class="input-wrap">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+
+        <label class="field-label" for="password">Password</label>
+        <div class="input-wrap">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" name="password" placeholder="••••••••••••" required>
+          <button type="button" class="show-toggle" id="showToggle">Show</button>
+        </div>
+
+        <div class="form-row">
+          <label class="checkbox-wrap">
+            <input type="checkbox" checked>
+            <span class="checkbox-box"><i class="fas fa-check"></i></span>
+            Remember me
+          </label>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="signin-submit">
+          Sign In <i class="fas fa-arrow-right"></i>
+        </button>
+
+        <p class="auth-note" id="authNote"></p>
+
+        <div class="divider"><span>or continue with</span></div>
+
+        <div class="social-buttons">
+          <button type="button" class="social-btn">
+            <i class="fab fa-google"></i> Continue with Google
+          </button>
+          <button type="button" class="social-btn">
+            <i class="fab fa-github"></i> Continue with GitHub
+          </button>
+        </div>
+
+        <p class="auth-switch">Don't have an account? <a href="signup.html">Sign up</a></p>
+      </form>
+
+      <div class="auth-features">
+        <div class="auth-feature">
+          <div class="auth-feature-icon"><i class="fas fa-shield-halved"></i></div>
+          <div>
+            <b>Secure &amp; Private</b>
+            <p>Your data is safe and encrypted</p>
+          </div>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon"><i class="fas fa-bolt"></i></div>
+          <div>
+            <b>Instant Analysis</b>
+            <p>Get real-time ATS score &amp; insights</p>
+          </div>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+          <div>
+            <b>Smart Suggestions</b>
+            <p>Improve your resume and get more interviews</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </div>
+
+  <script>
+    // Password show/hide toggle
+    const pwInput = document.getElementById("password");
+    const showToggle = document.getElementById("showToggle");
+    showToggle.addEventListener("click", () => {
+      const isHidden = pwInput.type === "password";
+      pwInput.type = isHidden ? "text" : "password";
+      showToggle.textContent = isHidden ? "Hide" : "Show";
+    });
+
+    // This is a BCA prototype with no real authentication backend yet —
+    // the form is visual only, so we just explain that instead of pretending to sign in.
+    const signinForm = document.getElementById("signinForm");
+    const authNote = document.getElementById("authNote");
+    signinForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      authNote.textContent = "This prototype doesn't require an account yet — head to the home page to analyze a resume directly.";
+    });
+  </script>
 </body>
 </html>
