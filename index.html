@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeLens — ATS Resume Analyzer</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ================= FLOATING SIDEBAR ================= -->
+  <aside class="sidebar">
+    <nav class="sidebar-nav">
+      <a href="#" class="side-item active" data-label="Dashboard">
+        <i class="fas fa-house"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="#" class="side-item" data-label="Profile">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+      <a href="#" class="side-item" data-label="Resumes">
+        <i class="fas fa-file-lines"></i>
+        <span>Resumes</span>
+      </a>
+      <a href="#" class="side-item" data-label="Analytics">
+        <i class="fas fa-chart-simple"></i>
+        <span>Analytics</span>
+      </a>
+      <a href="#" class="side-item" data-label="Insights">
+        <i class="fas fa-chart-pie"></i>
+        <span>Insights</span>
+      </a>
+      <a href="#" class="side-item" data-label="Settings">
+        <i class="fas fa-gear"></i>
+        <span>Settings</span>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="page">
+    <section class="hero">
+      <nav>
+        <div class="logo">
+          <div class="logo-icon-wrapper">
+            <img src="images/logo.png" alt="ResumeLens" class="logo-img">
+          </div>
+          <div class="logo-text">
+            <h2>Resume<span>Lens</span></h2>
+            <small>AI ATS RESUME ANALYZER</small>
+          </div>
+        </div>
+
+        <div class="nav-links">
+          <a href="#how-it-works">How it works</a>
+          <a href="signin.html" class="signin-btn">Sign In</a>
+          <a href="signup.html" class="signup-btn">Sign Up</a>
+        </div>
+      </nav>
+
+      <div class="hero-content">
+
+        <!-- Left Side -->
+        <div class="hero-left">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> BCA COLLEGE PROJECT PROTOTYPE</p>
+
+          <h1>
+            Check your resume<br>
+            against any <em>job.</em>
+          </h1>
+
+          <p class="hero-text">
+            Upload your resume and paste a job description to see how well they
+            match — your ATS score, matching skills, missing skills, and a few
+            simple suggestions to improve your resume for that job.
+          </p>
+
+          <div class="hero-image">
+            <img src="images/hero-dashboard.png" alt="ATS Resume Analyzer dashboard preview">
+          </div>
+        </div>
+
+        <!-- Right Side -->
+        <form class="upload-card" id="analyzeForm">
+          <div class="dropzone" id="uploadCard">
+            <div class="upload-icon"><i class="fas fa-arrow-up"></i></div>
+
+            <h2>Upload your resume</h2>
+            <p>Drop your PDF here, or browse your files</p>
+
+            <label class="choose-file" for="resumeFile">
+              Choose PDF <i class="fas fa-arrow-right"></i>
+            </label>
+
+            <input id="resumeFile" name="resume" type="file" accept=".pdf,application/pdf" hidden required>
+
+            <p class="file-note" id="fileNote">PDF only · Maximum file size 4 MB</p>
+          </div>
+
+          <textarea
+            id="jobDescription"
+            name="job_description"
+            class="jd-input"
+            placeholder="Paste the job description here..."
+            required></textarea>
+
+          <button type="submit" class="analyze-btn" id="analyzeBtn">
+            Analyze my resume
+          </button>
+
+          <p class="error-note" id="errorNote"></p>
+
+          <p class="secure-note"><i class="fas fa-shield-halved"></i> Your data is secure and confidential</p>
+        </form>
+
+      </div>
+    </section>
+
+    <section class="preview" id="how-it-works">
+      <p class="eyebrow center">SIMPLE, THREE-STEP CHECK</p>
+      <h2>See exactly where your resume falls short.</h2>
+
+      <div class="steps-row">
+        <div class="step-box">
+          <div class="step-num">1</div>
+          <h3>Upload &amp; paste</h3>
+          <p>Add your resume PDF and the job description you're applying to.</p>
+        </div>
+        <div class="step-box">
+          <div class="step-num">2</div>
+          <h3>We compare</h3>
+          <p>The tool checks your resume text against the job description for matching skills.</p>
+        </div>
+        <div class="step-box">
+          <div class="step-num">3</div>
+          <h3>Get your score</h3>
+          <p>See your match score, missing skills, and a few suggestions to improve.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
