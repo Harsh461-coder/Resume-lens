@@ -11,7 +11,7 @@ from .parser import extract_text_from_pdf
 from .cleaner import clean_text
 from .matcher import match_resume_to_job
 from .scorer import calculate_ats_score, calculate_skill_match_score
-from .suggestions import generate_suggestions
+from .suggestion import generate_suggestions
 
 
 def analyze_resume(file_stream, job_description: str, resume_filename: str = "resume.pdf") -> dict:
