@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume History — ResumeLens</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+
+<body>
+
+  {% include '_sidebar.html' %}
+
+  <div class="page">
+    <section class="dash-page">
+      <nav>
+        <div class="logo">
+          <div class="logo-icon-wrapper">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ResumeLens" class="logo-img">
+          </div>
+          <div class="logo-text">
+            <h2>Resume<span>Lens</span></h2>
+            <small>AI ATS RESUME ANALYZER</small>
+          </div>
+        </div>
+        <div class="dash-nav-actions">
+          {% if current_user %}
+          <span class="dash-user-greeting">Hi, {{ current_user.full_name.split(' ')[0] }}</span>
+          {% endif %}
+          <a href="{{ url_for('analyze_page') }}" class="signup-btn">
+            <i class="fas fa-plus"></i> New Analysis
+          </a>
+          <a href="{{ url_for('logout') }}" class="dash-logout" title="Log out"><i class="fas fa-right-from-bracket"></i></a>
+        </div>
+      </nav>
+
+      <div class="dash-header">
+        <h1>Resume History</h1>
+        <p>Every resume you've analyzed, most recent first.</p>
+      </div>
+
+      {% if entries %}
+      <div class="hist-table">
+        <div class="hist-row hist-head">
+          <span>Resume</span>
+          <span>Matched</span>
+          <span>Missing</span>
+          <span>Date</span>
+          <span>Score</span>
+          <span></span>
+        </div>
+        {% for entry in entries %}
+        <div class="hist-row">
+          <span class="hist-name"><i class="fas fa-file-lines"></i> {{ entry.resume_filename }}</span>
+          <span class="hist-matched">{{ entry.matched_skills|length }} skills</span>
+          <span class="hist-missing">{{ entry.missing_skills|length }} skills</span>
+          <span class="hist-date">{{ entry.created_at[:16].replace('T', ' ') }}</span>
+          <span class="hist-score {{ entry.score_class }}">{{ entry.match_score }}%</span>
+          <a href="{{ url_for('download_report', analysis_id=entry.id) }}" class="hist-download" title="Download report">
+            <i class="fas fa-download"></i>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="dash-empty">
+        <i class="fas fa-inbox"></i>
+        <p>No analyses yet. <a href="{{ url_for('analyze_page') }}">Analyze your first resume</a> to see it here.</p>
+      </div>
+      {% endif %}
+    </section>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

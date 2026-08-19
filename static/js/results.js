@@ -6,6 +6,7 @@ const scoreMessage = document.getElementById("scoreMessage");
 const matchedSkillsEl = document.getElementById("matchedSkills");
 const missingSkillsEl = document.getElementById("missingSkills");
 const suggestionsList = document.getElementById("suggestionsList");
+const downloadReportBtn = document.getElementById("downloadReportBtn");
 
 function scoreMessageFor(score) {
   if (score >= 80) return "Great match — you're nearly there!";
@@ -17,6 +18,11 @@ function renderResult(result) {
   resumeName.textContent = result.resume_filename || "Your Resume";
   scoreValue.textContent = Math.round(result.match_score);
   scoreMessage.textContent = scoreMessageFor(result.match_score);
+
+  if (result.id) {
+    downloadReportBtn.href = `/report/${result.id}`;
+    downloadReportBtn.style.display = "inline-flex";
+  }
 
   matchedSkillsEl.innerHTML = "";
   (result.matched_skills || []).forEach((skill) => {

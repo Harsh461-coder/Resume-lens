@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile — ResumeLens</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+
+<body>
+
+  {% include '_sidebar.html' %}
+
+  <div class="page">
+    <section class="dash-page">
+      <nav>
+        <div class="logo">
+          <div class="logo-icon-wrapper">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ResumeLens" class="logo-img">
+          </div>
+          <div class="logo-text">
+            <h2>Resume<span>Lens</span></h2>
+            <small>AI ATS RESUME ANALYZER</small>
+          </div>
+        </div>
+        <div class="dash-nav-actions">
+          <a href="{{ url_for('logout') }}" class="dash-logout" title="Log out"><i class="fas fa-right-from-bracket"></i></a>
+        </div>
+      </nav>
+
+      <div class="dash-header">
+        <h1>Profile</h1>
+        <p>Your account details and analysis stats.</p>
+      </div>
+
+      {% if current_user %}
+      <div class="profile-card">
+        <div class="profile-avatar">
+          {{ current_user.full_name[0]|upper }}
+        </div>
+        <div>
+          <h2>{{ current_user.full_name }}</h2>
+          <p>{{ current_user.email }}</p>
+          <small>Member since {{ current_user.created_at[:10] }}</small>
+        </div>
+      </div>
+
+      <div class="dash-stats">
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon"><i class="fas fa-file-lines"></i></div>
+          <div>
+            <small>TOTAL RESUMES ANALYZED</small>
+            <b>{{ stats.total_count }}</b>
+          </div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon avg"><i class="fas fa-chart-simple"></i></div>
+          <div>
+            <small>AVERAGE ATS SCORE</small>
+            <b>{{ stats.avg_score }}%</b>
+          </div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon best"><i class="fas fa-trophy"></i></div>
+          <div>
+            <small>BEST SCORE</small>
+            <b>{{ stats.best_score }}%</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-forms">
+
+        <form class="profile-form" method="POST" action="{{ url_for('profile_update_name') }}">
+          <h2><i class="fas fa-user-pen"></i> Edit Name</h2>
+
+          {% if name_error %}<p class="auth-error">{{ name_error }}</p>{% endif %}
+          {% if name_success %}<p class="profile-success">{{ name_success }}</p>{% endif %}
+
+          <label class="field-label" for="fullname">Full name</label>
+          <div class="input-wrap">
+            <i class="fas fa-user"></i>
+            <input type="text" id="fullname" name="fullname" value="{{ current_user.full_name }}" required>
+          </div>
+
+          <button type="submit" class="signin-submit">Save Name</button>
+        </form>
+
+        <form class="profile-form" method="POST" action="{{ url_for('profile_update_password') }}">
+          <h2><i class="fas fa-lock"></i> Change Password</h2>
+
+          {% if password_error %}<p class="auth-error">{{ password_error }}</p>{% endif %}
+          {% if password_success %}<p class="profile-success">{{ password_success }}</p>{% endif %}
+
+          <label class="field-label" for="currentPassword">Current password</label>
+          <div class="input-wrap">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="currentPassword" name="currentPassword" placeholder="••••••••••••" required>
+          </div>
+
+          <label class="field-label" for="newPassword">New password</label>
+          <div class="input-wrap">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="newPassword" name="newPassword" placeholder="At least 8 characters" required>
+          </div>
+
+          <label class="field-label" for="confirmNewPassword">Confirm new password</label>
+          <div class="input-wrap">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="confirmNewPassword" name="confirmNewPassword" placeholder="Re-enter new password" required>
+          </div>
+
+          <button type="submit" class="signin-submit">Change Password</button>
+        </form>
+
+      </div>
+      {% endif %}
+    </section>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

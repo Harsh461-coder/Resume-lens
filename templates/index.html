@@ -11,47 +11,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
 <body>
 
   <!-- ================= FLOATING SIDEBAR ================= -->
-  <aside class="sidebar">
-    <nav class="sidebar-nav">
-      <a href="#" class="side-item active" data-label="Dashboard">
-        <i class="fas fa-house"></i>
-        <span>Dashboard</span>
-      </a>
-      <a href="#" class="side-item" data-label="Profile">
-        <i class="fas fa-user"></i>
-        <span>Profile</span>
-      </a>
-      <a href="#" class="side-item" data-label="Resumes">
-        <i class="fas fa-file-lines"></i>
-        <span>Resumes</span>
-      </a>
-      <a href="#" class="side-item" data-label="Analytics">
-        <i class="fas fa-chart-simple"></i>
-        <span>Analytics</span>
-      </a>
-      <a href="#" class="side-item" data-label="Insights">
-        <i class="fas fa-chart-pie"></i>
-        <span>Insights</span>
-      </a>
-      <a href="#" class="side-item" data-label="Settings">
-        <i class="fas fa-gear"></i>
-        <span>Settings</span>
-      </a>
-    </nav>
-  </aside>
+  {% include '_sidebar.html' %}
 
   <div class="page">
     <section class="hero">
       <nav>
         <div class="logo">
           <div class="logo-icon-wrapper">
-            <img src="images/logo.png" alt="ResumeLens" class="logo-img">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ResumeLens" class="logo-img">
           </div>
           <div class="logo-text">
             <h2>Resume<span>Lens</span></h2>
@@ -61,8 +34,13 @@
 
         <div class="nav-links">
           <a href="#how-it-works">How it works</a>
-          <a href="signin.html" class="signin-btn">Sign In</a>
-          <a href="signup.html" class="signup-btn">Sign Up</a>
+          {% if current_user %}
+          <a href="{{ url_for('dashboard') }}" class="signin-btn">Dashboard</a>
+          <a href="{{ url_for('logout') }}" class="signup-btn">Log out</a>
+          {% else %}
+          <a href="{{ url_for('signin') }}" class="signin-btn">Sign In</a>
+          <a href="{{ url_for('signup') }}" class="signup-btn">Sign Up</a>
+          {% endif %}
         </div>
       </nav>
 
@@ -84,42 +62,23 @@
           </p>
 
           <div class="hero-image">
-            <img src="images/ats-ui.png" alt="ATS Resume Analyzer dashboard preview">
+            <img src="{{ url_for('static', filename='images/hero-dashboard.png') }}" alt="ATS Resume Analyzer dashboard preview">
           </div>
         </div>
 
         <!-- Right Side -->
-        <form class="upload-card" id="analyzeForm">
-          <div class="dropzone" id="uploadCard">
-            <div class="upload-icon"><i class="fas fa-arrow-up"></i></div>
+        <div class="cta-card">
+          <div class="upload-icon"><i class="fas fa-bolt"></i></div>
 
-            <h2>Upload your resume</h2>
-            <p>Drop your PDF here, or browse your files</p>
+          <h2>Ready to check your resume?</h2>
+          <p>Upload your resume and a job description to get your ATS score, matching skills, and improvement tips — takes less than a minute.</p>
 
-            <label class="choose-file" for="resumeFile">
-              Choose PDF <i class="fas fa-arrow-right"></i>
-            </label>
-
-            <input id="resumeFile" name="resume" type="file" accept=".pdf,application/pdf" hidden required>
-
-            <p class="file-note" id="fileNote">PDF only · Maximum file size 4 MB</p>
-          </div>
-
-          <textarea
-            id="jobDescription"
-            name="job_description"
-            class="jd-input"
-            placeholder="Paste the job description here..."
-            required></textarea>
-
-          <button type="submit" class="analyze-btn" id="analyzeBtn">
-            Analyze my resume
-          </button>
-
-          <p class="error-note" id="errorNote"></p>
+          <a href="{{ url_for('analyze_page') }}" class="analyze-btn cta-link">
+            Analyze My Resume <i class="fas fa-arrow-right"></i>
+          </a>
 
           <p class="secure-note"><i class="fas fa-shield-halved"></i> Your data is secure and confidential</p>
-        </form>
+        </div>
 
       </div>
     </section>
@@ -148,6 +107,6 @@
     </section>
   </div>
 
-  <script src="script.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

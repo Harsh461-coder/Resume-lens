@@ -11,54 +11,26 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
 <body>
 
-  <aside class="sidebar">
-    <nav class="sidebar-nav">
-      <a href="index.html" class="side-item" data-label="Dashboard">
-        <i class="fas fa-house"></i>
-        <span>Dashboard</span>
-      </a>
-      <a href="#" class="side-item" data-label="Profile">
-        <i class="fas fa-user"></i>
-        <span>Profile</span>
-      </a>
-      <a href="#" class="side-item active" data-label="Resumes">
-        <i class="fas fa-file-lines"></i>
-        <span>Resumes</span>
-      </a>
-      <a href="#" class="side-item" data-label="Analytics">
-        <i class="fas fa-chart-simple"></i>
-        <span>Analytics</span>
-      </a>
-      <a href="#" class="side-item" data-label="Insights">
-        <i class="fas fa-chart-pie"></i>
-        <span>Insights</span>
-      </a>
-      <a href="#" class="side-item" data-label="Settings">
-        <i class="fas fa-gear"></i>
-        <span>Settings</span>
-      </a>
-    </nav>
-    <div class="sidebar-dots"><span></span><span></span><span></span></div>
-  </aside>
+  {% include '_sidebar.html' %}
 
   <div class="page">
     <section class="results-page">
       <nav>
         <div class="logo">
           <div class="logo-icon-wrapper">
-            <img src="images/logo.png" alt="ResumeLens" class="logo-img">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ResumeLens" class="logo-img">
           </div>
           <div class="logo-text">
             <h2>Resume<span>Lens</span></h2>
             <small>AI ATS RESUME ANALYZER</small>
           </div>
         </div>
-        <a href="index.html" class="back-link">← Analyze another resume</a>
+        <a href="{{ url_for('analyze_page') }}" class="back-link">← Analyze another resume</a>
       </nav>
 
       <div class="dashboard" id="dashboard">
@@ -68,6 +40,9 @@
               <small>RESUME ANALYSIS</small>
               <b id="resumeName">Your Resume</b>
             </div>
+            <a href="#" class="report-btn" id="downloadReportBtn" style="display:none;">
+              <i class="fas fa-download"></i> Download Report
+            </a>
           </div>
 
           <div class="cards">
@@ -99,6 +74,7 @@
     </section>
   </div>
 
-  <script src="results.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/results.js') }}"></script>
 </body>
 </html>

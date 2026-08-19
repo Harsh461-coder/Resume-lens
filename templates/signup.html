@@ -3,34 +3,263 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign Up — ResumeLens</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: "DM Sans", sans-serif;
-      background: linear-gradient(140deg, #eee8ff 0%, #f6f3ff 45%, white 80%);
-      color: #201a38;
-      text-align: center;
-    }
-    .box { max-width: 380px; padding: 40px; }
-    h1 { font-family: "Manrope", sans-serif; font-size: 26px; margin-bottom: 10px; }
-    p { color: #746d88; font-size: 14px; line-height: 1.6; }
-    a { color: #6e44e8; font-weight: 700; text-decoration: none; }
-  </style>
+  <title>Create Account — ResumeLens</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
 </head>
 <body>
-  <div class="box">
-    <h1>Sign up — coming soon</h1>
-    <p>
-      This BCA prototype doesn't need an account yet — you can analyze a resume
-      right away from the <a href="index.html">home page</a>. Accounts and saved
-      history are part of the future scope.
-    </p>
+
+  <div class="su-page">
+
+    <!-- ================= LEFT PANEL ================= -->
+    <section class="su-left">
+      <div class="su-logo">
+        <div class="su-logo-icon">
+          <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ResumeLens">
+        </div>
+        <div class="su-logo-text">
+          <h2>Resume<span>Lens</span></h2>
+          <small>AI ATS RESUME ANALYZER</small>
+        </div>
+      </div>
+
+      <p class="su-badge"><span></span> BCA COLLEGE PROJECT PROTOTYPE</p>
+
+      <h1 class="su-heading">
+        Create your account.<br>
+        Build a <em>better future.</em>
+      </h1>
+
+      <p class="su-subtext">
+        Join ResumeLens and start analyzing your resume against real job
+        descriptions to boost your chances of getting hired.
+      </p>
+
+      <!-- Dashboard preview card -->
+      <div class="su-preview-card">
+        <div class="su-mini-sidebar">
+          <div class="su-mini-item active"><i class="fas fa-table-cells"></i></div>
+          <div class="su-mini-item"><i class="fas fa-user"></i></div>
+          <div class="su-mini-item"><i class="fas fa-file-lines"></i></div>
+          <div class="su-mini-item"><i class="fas fa-chart-simple"></i></div>
+          <div class="su-mini-item"><i class="fas fa-chart-pie"></i></div>
+          <div class="su-mini-item"><i class="fas fa-gear"></i></div>
+        </div>
+
+        <div class="su-preview-content">
+          <small class="su-preview-title">DASHBOARD OVERVIEW</small>
+
+          <div class="su-preview-grid">
+            <div class="su-preview-box su-score-box">
+              <small>ATS SCORE</small>
+              <div class="su-score-ring"><span>92<em>%</em></span></div>
+              <p class="su-score-label">Excellent Match</p>
+            </div>
+
+            <div class="su-preview-box">
+              <small>MATCHING SKILLS</small>
+              <ul class="su-skill-rows">
+                <li><i class="fas fa-check"></i> JavaScript <span class="su-bar"><i style="width:92%"></i></span></li>
+                <li><i class="fas fa-check"></i> React.js <span class="su-bar"><i style="width:88%"></i></span></li>
+                <li><i class="fas fa-check"></i> Node.js <span class="su-bar"><i style="width:85%"></i></span></li>
+                <li><i class="fas fa-check"></i> Python <span class="su-bar"><i style="width:75%"></i></span></li>
+                <li><i class="fas fa-check"></i> SQL <span class="su-bar"><i style="width:80%"></i></span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="su-preview-grid">
+            <div class="su-preview-box">
+              <small>MISSING SKILLS</small>
+              <ul class="su-missing-rows">
+                <li><i class="fas fa-circle"></i> TypeScript</li>
+                <li><i class="fas fa-circle"></i> AWS</li>
+                <li><i class="fas fa-circle"></i> Docker</li>
+              </ul>
+            </div>
+
+            <div class="su-preview-box">
+              <small>RECENT ANALYSES</small>
+              <ul class="su-recent-rows">
+                <li><div><b>Frontend Developer</b><span>2 hours ago</span></div><em class="good">92%</em></li>
+                <li><div><b>Full Stack Developer</b><span>1 day ago</span></div><em class="mid">78%</em></li>
+                <li><div><b>Backend Developer</b><span>3 days ago</span></div><em class="low">65%</em></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="su-features">
+        <div class="su-feature">
+          <div class="su-feature-icon"><i class="fas fa-shield-halved"></i></div>
+          <div><b>Secure &amp; Private</b><p>Your data is safe and encrypted</p></div>
+        </div>
+        <div class="su-feature">
+          <div class="su-feature-icon"><i class="fas fa-bolt"></i></div>
+          <div><b>Instant Analysis</b><p>Get real-time ATS score &amp; insights</p></div>
+        </div>
+        <div class="su-feature">
+          <div class="su-feature-icon"><i class="fas fa-chart-simple"></i></div>
+          <div><b>Smart Suggestions</b><p>Improve your resume and get more interviews</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RIGHT PANEL ================= -->
+    <section class="su-right">
+      <div class="su-topbar">
+        <span>Already have an account?</span>
+        <a href="{{ url_for('signin') }}">Sign in <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <form class="su-card" id="signupForm" method="POST" action="/signup">
+        <h1>Create your account <span class="wave">👋</span></h1>
+        <p class="su-card-sub">Let's get you started with ResumeLens</p>
+
+        {% if error %}
+        <p class="su-error">{{ error }}</p>
+        {% endif %}
+
+        <div class="su-grid-2">
+          <div>
+            <label class="su-label" for="fullname">Full name</label>
+            <div class="su-input-wrap">
+              <i class="fas fa-user"></i>
+              <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+            </div>
+          </div>
+          <div>
+            <label class="su-label" for="email">Email address</label>
+            <div class="su-input-wrap">
+              <i class="fas fa-envelope"></i>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="su-grid-2">
+          <div>
+            <label class="su-label" for="password">Password</label>
+            <div class="su-input-wrap">
+              <i class="fas fa-lock"></i>
+              <input type="password" id="password" name="password" placeholder="Create a strong password" required>
+              <button type="button" class="su-eye-toggle" data-target="password"><i class="fas fa-eye"></i></button>
+            </div>
+          </div>
+          <div>
+            <label class="su-label" for="confirmPassword">Confirm password</label>
+            <div class="su-input-wrap">
+              <i class="fas fa-lock"></i>
+              <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+              <button type="button" class="su-eye-toggle" data-target="confirmPassword"><i class="fas fa-eye"></i></button>
+            </div>
+            <p class="su-match-note" id="matchNote"></p>
+          </div>
+        </div>
+
+        <div class="su-grid-2 su-strength-row">
+          <div>
+            <div class="su-strength-header">
+              <span class="su-label">Password strength</span>
+              <span id="strengthLabel" class="su-strength-label">—</span>
+            </div>
+            <div class="su-strength-bars">
+              <i id="bar1"></i><i id="bar2"></i><i id="bar3"></i><i id="bar4"></i>
+            </div>
+          </div>
+          <div class="su-checklist">
+            <p id="reqLength"><i class="fas fa-circle-check"></i> At least 8 characters</p>
+            <p id="reqUpper"><i class="fas fa-circle-check"></i> One uppercase letter</p>
+            <p id="reqNumber"><i class="fas fa-circle-check"></i> One number or special character</p>
+          </div>
+        </div>
+
+        <div class="su-grid-2">
+          <div>
+            <label class="su-label" for="describes">What describes you?</label>
+            <div class="su-input-wrap su-select-wrap">
+              <i class="fas fa-graduation-cap"></i>
+              <select id="describes" name="describes">
+                <option>Student</option>
+                <option>Working Professional</option>
+                <option>Career Switcher</option>
+                <option>Recent Graduate</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="su-label" for="experience">Experience level</label>
+            <div class="su-input-wrap su-select-wrap">
+              <i class="fas fa-user"></i>
+              <select id="experience" name="experience">
+                <option>Fresher</option>
+                <option>0-2 years</option>
+                <option>2-5 years</option>
+                <option>5+ years</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <label class="su-label" for="targetRole">Target role (optional)</label>
+        <div class="su-input-wrap">
+          <i class="fas fa-briefcase"></i>
+          <input type="text" id="targetRole" name="targetRole" placeholder="e.g. Software Developer">
+        </div>
+
+        <p class="su-section-title">Want to get started faster?</p>
+        <p class="su-section-sub">Add your resume later. You can always update it from your dashboard.</p>
+
+        <div class="su-option-row">
+          <button type="button" class="su-option-card active" data-option="paste">
+            <i class="fas fa-file-lines"></i>
+            <b>Paste Resume Text</b>
+            <p>Copy and paste your resume content</p>
+          </button>
+          <button type="button" class="su-option-card" data-option="linkedin">
+            <i class="fab fa-linkedin"></i>
+            <b>Import from LinkedIn</b>
+            <p>Import your profile details</p>
+          </button>
+          <button type="button" class="su-option-card" data-option="skip">
+            <i class="fas fa-folder"></i>
+            <b>Skip for Now</b>
+            <p>I'll add my resume later</p>
+          </button>
+        </div>
+
+        <label class="su-checkbox-wrap">
+          <input type="checkbox" id="agreeTerms" required>
+          <span class="su-checkbox-box"><i class="fas fa-check"></i></span>
+          I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+        </label>
+
+        <button type="submit" class="su-submit">
+          Create Account <i class="fas fa-arrow-right"></i>
+        </button>
+
+        <p class="su-note" id="signupNote"></p>
+
+        <div class="su-divider"><span>or continue with</span></div>
+
+        <div class="su-social-buttons">
+          <button type="button" class="su-social-btn" disabled title="Not available in this prototype"><i class="fab fa-google"></i> Continue with Google</button>
+          <button type="button" class="su-social-btn" disabled title="Not available in this prototype"><i class="fab fa-apple"></i> Continue with Apple ID</button>
+        </div>
+
+        <p class="su-lock-note"><i class="fas fa-lock"></i> Your information is encrypted and securely stored.</p>
+      </form>
+    </section>
+
   </div>
+
+  <script src="{{ url_for('static', filename='js/signup.js') }}"></script>
 </body>
 </html>

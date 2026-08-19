@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
 
@@ -21,7 +21,7 @@
     <section class="auth-left">
       <div class="logo auth-logo">
         <div class="logo-icon-wrapper">
-          <img src="images/logo.png" alt="ResumeLens" class="logo-img">
+          <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ResumeLens" class="logo-img">
         </div>
         <div class="logo-text">
           <h2>Resume<span>Lens</span></h2>
@@ -103,7 +103,6 @@
             </div>
           </div>
         </div>
-
       </div>
 
       <div class="callout-card">
@@ -118,9 +117,14 @@
 
     <!-- ================= RIGHT PANEL ================= -->
     <section class="auth-right">
-      <form class="auth-form" id="signinForm">
+      <form class="auth-form" id="signinForm" method="POST"
+            action="/signin{% if request.args.get('next') %}?next={{ request.args.get('next') }}{% endif %}">
         <h1>Sign in to your account</h1>
         <p class="auth-form-sub">Enter your credentials to access your account</p>
+
+        {% if error %}
+        <p class="auth-error">{{ error }}</p>
+        {% endif %}
 
         <label class="field-label" for="email">Email address</label>
         <div class="input-wrap">
@@ -148,20 +152,18 @@
           Sign In <i class="fas fa-arrow-right"></i>
         </button>
 
-        <p class="auth-note" id="authNote"></p>
-
         <div class="divider"><span>or continue with</span></div>
 
         <div class="social-buttons">
-          <button type="button" class="social-btn">
+          <button type="button" class="social-btn" disabled title="Not available in this prototype">
             <i class="fab fa-google"></i> Continue with Google
           </button>
-          <button type="button" class="social-btn">
+          <button type="button" class="social-btn" disabled title="Not available in this prototype">
             <i class="fab fa-github"></i> Continue with GitHub
           </button>
         </div>
 
-        <p class="auth-switch">Don't have an account? <a href="signup.html">Sign up</a></p>
+        <p class="auth-switch">Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a></p>
       </form>
 
       <div class="auth-features">
@@ -192,22 +194,12 @@
   </div>
 
   <script>
-    // Password show/hide toggle
     const pwInput = document.getElementById("password");
     const showToggle = document.getElementById("showToggle");
     showToggle.addEventListener("click", () => {
       const isHidden = pwInput.type === "password";
       pwInput.type = isHidden ? "text" : "password";
       showToggle.textContent = isHidden ? "Hide" : "Show";
-    });
-
-    // This is a BCA prototype with no real authentication backend yet —
-    // the form is visual only, so we just explain that instead of pretending to sign in.
-    const signinForm = document.getElementById("signinForm");
-    const authNote = document.getElementById("authNote");
-    signinForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      authNote.textContent = "This prototype doesn't require an account yet — head to the home page to analyze a resume directly.";
     });
   </script>
 </body>

@@ -1,0 +1,28 @@
+  <aside class="sidebar">
+    <nav class="sidebar-nav">
+      <a href="{{ url_for('dashboard') }}" class="side-item {{ 'active' if active_page == 'dashboard' else '' }}" data-label="Dashboard">
+        <i class="fas fa-house"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="{{ url_for('profile') }}" class="side-item {{ 'active' if active_page == 'profile' else '' }}" data-label="Profile">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+      <a href="{{ url_for('history') }}" class="side-item {{ 'active' if active_page == 'history' else '' }}" data-label="Resumes">
+        <i class="fas fa-file-lines"></i>
+        <span>Resumes</span>
+      </a>
+      <a href="#" class="side-item" data-label="Analytics">
+        <i class="fas fa-chart-simple"></i>
+        <span>Analytics</span>
+      </a>
+      <a href="#" class="side-item" data-label="Insights">
+        <i class="fas fa-chart-pie"></i>
+        <span>Insights</span>
+      </a>
+      <a href="#" class="side-item" data-label="Settings">
+        <i class="fas fa-gear"></i>
+        <span>Settings</span>
+      </a>
+    </nav>
+  </aside>

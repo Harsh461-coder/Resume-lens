@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analyze Your Resume — ResumeLens</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+
+  {% include '_sidebar.html' %}
+
+  <div class="page">
+    <section class="hero analyze-hero">
+      <nav>
+        <div class="logo">
+          <div class="logo-icon-wrapper">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ResumeLens" class="logo-img">
+          </div>
+          <div class="logo-text">
+            <h2>Resume<span>Lens</span></h2>
+            <small>AI ATS RESUME ANALYZER</small>
+          </div>
+        </div>
+
+        <div class="nav-links">
+          <a href="{{ url_for('index') }}">← Back to home</a>
+        </div>
+      </nav>
+
+      <div class="analyze-content">
+        <p class="eyebrow center"><span class="eyebrow-dot"></span> NEW ANALYSIS</p>
+        <h1 class="analyze-heading">Let's check your resume</h1>
+        <p class="analyze-subtext">Upload your resume as a PDF and paste the job description you're applying to.</p>
+
+        <form class="upload-card" id="analyzeForm">
+          <div class="dropzone" id="uploadCard">
+            <div class="upload-icon"><i class="fas fa-arrow-up"></i></div>
+
+            <h2>Upload your resume</h2>
+            <p>Drop your PDF here, or browse your files</p>
+
+            <label class="choose-file" for="resumeFile">
+              Choose PDF <i class="fas fa-arrow-right"></i>
+            </label>
+
+            <input id="resumeFile" name="resume" type="file" accept=".pdf,application/pdf" hidden required>
+
+            <p class="file-note" id="fileNote">PDF only · Maximum file size 4 MB</p>
+          </div>
+
+          <textarea
+            id="jobDescription"
+            name="job_description"
+            class="jd-input"
+            placeholder="Paste the job description here..."
+            required></textarea>
+
+          <button type="submit" class="analyze-btn" id="analyzeBtn">
+            Analyze my resume
+          </button>
+
+          <p class="error-note" id="errorNote"></p>
+
+          <p class="secure-note"><i class="fas fa-shield-halved"></i> Your data is secure and confidential</p>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+</body>
+</html>

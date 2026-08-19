@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+env/
+.venv/
+
+# Environment secrets
+.env
+
+# Flask
+instance/
+
+# Database
+database/*.db
+
+# Uploaded/generated files
+uploads/resumes/*
+!uploads/resumes/.gitkeep
+reports/generated/*
+!reports/generated/.gitkeep
+
+# Editor/OS
+.vscode/
+.idea/
+.DS_Store
+*.log

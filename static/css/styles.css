@@ -700,6 +700,25 @@ small {
   font: 700 16px "Manrope", sans-serif;
 }
 
+.report-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  color: white;
+  font-size: 12.5px;
+  font-weight: 700;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--purple-light), var(--purple-dark));
+  box-shadow: 0 10px 22px rgba(110, 68, 232, 0.25);
+  transition: 0.2s;
+}
+
+.report-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(110, 68, 232, 0.35);
+}
+
 .cards {
   display: grid;
   grid-template-columns: 1fr 1.3fr;
@@ -1335,6 +1354,18 @@ small {
   min-height: 0;
 }
 
+.auth-error {
+  margin: 0 0 18px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  background: #fdecea;
+  border: 1px solid #f6cfc9;
+  color: #b5453c;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
 .auth-note:empty {
   display: none;
 }
@@ -1381,6 +1412,13 @@ small {
   border-color: var(--purple);
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(110, 68, 232, 0.12);
+}
+
+.social-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .social-btn .fa-google { color: #ea4335; }
@@ -1471,4 +1509,78 @@ small {
   .auth-features {
     grid-template-columns: 1fr;
   }
+}
+
+/* ---------- Landing page CTA card (replaces the old inline upload form) ---------- */
+
+.cta-card {
+  max-width: 420px;
+  margin-left: auto;
+  padding: 44px 36px;
+  text-align: center;
+  border: 1px solid #eeeaff;
+  border-radius: 22px;
+  background: white;
+  box-shadow: 0 25px 60px rgba(87, 55, 185, 0.15);
+  opacity: 0;
+  animation: cardEnter 0.9s ease 0.2s forwards;
+}
+
+.cta-card .upload-icon {
+  margin: 0 auto 18px;
+}
+
+.cta-card h2 {
+  margin: 0 0 10px;
+  font: 700 22px "Manrope", sans-serif;
+}
+
+.cta-card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 22px;
+}
+
+.cta-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.cta-card .secure-note {
+  margin-top: 18px;
+}
+
+/* ---------- Dedicated analyze page ---------- */
+
+.analyze-hero {
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+.analyze-content {
+  max-width: 480px;
+  margin: 40px auto 0;
+  text-align: center;
+}
+
+.analyze-heading {
+  margin: 14px 0 10px;
+  font: 800 clamp(30px, 4vw, 40px) / 1.15 "Manrope", sans-serif;
+  letter-spacing: -1.5px;
+}
+
+.analyze-subtext {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 30px;
+}
+
+.analyze-content .upload-card {
+  max-width: 100%;
+  margin: 0;
 }

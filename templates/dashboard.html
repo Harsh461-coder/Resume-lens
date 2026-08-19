@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — ResumeLens</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+
+<body>
+
+  {% include '_sidebar.html' %}
+
+  <div class="page">
+    <section class="dash-page">
+      <nav>
+        <div class="logo">
+          <div class="logo-icon-wrapper">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ResumeLens" class="logo-img">
+          </div>
+          <div class="logo-text">
+            <h2>Resume<span>Lens</span></h2>
+            <small>AI ATS RESUME ANALYZER</small>
+          </div>
+        </div>
+        <div class="dash-nav-actions">
+          {% if current_user %}
+          <span class="dash-user-greeting">Hi, {{ current_user.full_name.split(' ')[0] }}</span>
+          {% endif %}
+          <a href="{{ url_for('analyze_page') }}" class="signup-btn">
+            <i class="fas fa-plus"></i> New Analysis
+          </a>
+          <a href="{{ url_for('logout') }}" class="dash-logout" title="Log out"><i class="fas fa-right-from-bracket"></i></a>
+        </div>
+      </nav>
+
+      <div class="dash-header">
+        <h1 id="dashGreeting">Welcome back{% if current_user %}, {{ current_user.full_name.split(' ')[0] }}{% endif %}</h1>
+        <p>An overview of everything you've analyzed so far.</p>
+      </div>
+
+      <div class="dash-stats">
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon"><i class="fas fa-file-lines"></i></div>
+          <div>
+            <small>TOTAL RESUMES ANALYZED</small>
+            <b>{{ stats.total_count }}</b>
+          </div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon avg"><i class="fas fa-chart-simple"></i></div>
+          <div>
+            <small>AVERAGE ATS SCORE</small>
+            <b>{{ stats.avg_score }}%</b>
+          </div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon best"><i class="fas fa-trophy"></i></div>
+          <div>
+            <small>BEST SCORE</small>
+            <b>{{ stats.best_score }}%</b>
+          </div>
+        </div>
+      </div>
+
+      {% if score_trend and score_trend|length > 1 %}
+      <div class="dash-widget dash-chart-widget">
+        <div class="dash-widget-header">
+          <h2><i class="fas fa-chart-line"></i> Score Trend</h2>
+          <p>How your ATS score has changed across your last {{ score_trend|length }} analyses.</p>
+        </div>
+        <canvas id="scoreTrendChart" height="80"></canvas>
+      </div>
+      {% endif %}
+
+      {% if top_missing_skills %}
+      <div class="dash-widget">
+        <div class="dash-widget-header">
+          <h2><i class="fas fa-lightbulb"></i> Skills to Focus On</h2>
+          <p>The skills that show up most often as missing across your analyses.</p>
+        </div>
+        <div class="dash-skill-tags">
+          {% for item in top_missing_skills %}
+          <span class="dash-skill-tag">{{ item.skill }} <em>×{{ item.count }}</em></span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="dash-recent">
+        <div class="dash-recent-header">
+          <h2>Recent Analyses</h2>
+          <a href="{{ url_for('history') }}">View all <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        {% if recent %}
+        <div class="dash-recent-list">
+          {% for entry in recent %}
+          <div class="dash-recent-row">
+            <div class="dash-recent-name">
+              <i class="fas fa-file-lines"></i>
+              <div>
+                <b>{{ entry.resume_filename }}</b>
+                <span>{{ entry.created_at[:16].replace('T', ' ') }}</span>
+              </div>
+            </div>
+            <div class="dash-recent-skills">
+              {{ entry.matched_skills|length }} matched · {{ entry.missing_skills|length }} missing
+            </div>
+            <div class="dash-recent-score {{ entry.score_class }}">{{ entry.match_score }}%</div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="dash-empty">
+          <i class="fas fa-inbox"></i>
+          <p>No analyses yet. <a href="{{ url_for('analyze_page') }}">Analyze your first resume</a> to see it here.</p>
+        </div>
+        {% endif %}
+      </div>
+    </section>
+  </div>
+
+  {% if score_trend and score_trend|length > 1 %}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script id="scoreTrendData" type="application/json">{{ score_trend|tojson }}</script>
+  {% endif %}
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+technology,category
+python,language
+java,language
+javascript,language
+typescript,language
+c++,language
+react,framework
+angular,framework
+vue.js,framework
+django,framework
+flask,framework
+spring boot,framework
+mysql,database
+postgresql,database
+mongodb,database
+sqlite,database
+redis,database
+aws,cloud
+azure,cloud
+google cloud platform,cloud
+docker,devops
+kubernetes,devops
+jenkins,devops
+git,tool
+figma,tool
+postman,tool
