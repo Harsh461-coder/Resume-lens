@@ -23,6 +23,9 @@ def get_connection():
 
 
 def init_db():
+    # The SQLite file lives in this folder. Creating it here keeps a new
+    # Render deployment from failing if the database directory is not present.
+    os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
     conn = get_connection()
 
     conn.execute("""

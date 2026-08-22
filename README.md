@@ -72,6 +72,18 @@ resumelens/
 
 5. Open your browser at `http://127.0.0.1:5000`
 
+## Deploying on Render
+
+1. Push this `resumelens` folder to a GitHub repository.
+2. In Render, create a **Web Service** and connect that repository.
+3. Render will use the included `Procfile`. Set the build command to
+   `pip install -r requirements.txt` if Render does not detect it automatically.
+4. Add a `FLASK_SECRET_KEY` environment variable. Use a long random value,
+   not the sample value in `.env.example`.
+5. For a prototype, SQLite will work. Its data is reset after a Render restart
+   unless you attach a persistent disk. Mount the disk at `/opt/render/project/src/database`
+   to keep accounts and analysis history
+
 ## How the matching works
 
 1. Text is extracted from the uploaded resume PDF using `pdfplumber`.

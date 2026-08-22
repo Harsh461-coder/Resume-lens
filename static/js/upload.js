@@ -85,16 +85,17 @@ analyzeForm.addEventListener("submit", async (event) => {
       body: formData,
     });
 
+    const payload = await response.json();
     if (!response.ok) {
-      throw new Error("Server returned an error while analyzing.");
+      throw new Error(playload.error || "Server returned an error while analyzing.");
     }
 
-    const result = await response.json();
+    const result = payload;
 
     sessionStorage.setItem("analysisResult", JSON.stringify(result));
     window.location.href = "/results";
   } catch (err) {
-    errorNote.textContent = "Something went wrong. Please try again.";
+    errorNote.textContent = err.message || "Something went wrong. Please try again.";
     console.error(err);
   } finally {
     analyzeBtn.disabled = false;

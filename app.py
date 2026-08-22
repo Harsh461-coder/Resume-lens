@@ -42,12 +42,14 @@ from database import (
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.environ.get("FLASK_SECRET_KEY", "dev-secret-key-change-this")
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", "development-only-secret")
 
 MAX_FILE_SIZE = 4 * 1024 * 1024  # 4 MB, matches the frontend's limit
 app.config["MAX_CONTENT_LENGTH"] = MAX_FILE_SIZE
 
-
+# Gunicorn (used by Render) imports this module and does not execute the
+# development-only block at the bottom of this file.
+init_db()
 # ---------------------------------------------------------- Auth helpers
 
 def login_required(view):
@@ -283,6 +285,11 @@ def analyze():
     result["id"] = save_id
     return jsonify(result)
 
+@app.errorhandler(413)
+def file_too_large(_error):
+    """Return a clear message if Flask rejects an oversized upload."""
+    return jsonify({"error": "The PDF is larger than the 4 MB file limit."}), 413
+
 
 @app.route("/report/<int:analysis_id>")
 @login_required
@@ -309,5 +316,4 @@ def api_history():
 
 
 if __name__ == "__main__":
-    init_db()
     app.run(debug=True)
